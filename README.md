@@ -3,8 +3,8 @@ title: Intro to express and express-routing
 type: lesson
 duration: '1:30'
 creator:
-    name: Gerry Mathe
-    city: London
+    created by: Gerry Mathe/London
+    updated by: Marc Wright/ATL
 competencies: Server Applications
 ---
 
