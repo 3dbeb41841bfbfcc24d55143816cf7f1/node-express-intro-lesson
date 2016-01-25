@@ -85,6 +85,11 @@ Notice the get verb here - this can also be post, put, delete, etc. Then run the
 ```bash
 node app.js
 ```
+It may get tiresome to constantly stop and restart the server, so we can also use this: 
+
+```bash
+nodemon app.js
+```
 
 Navigate to `http://localhost:3000` and voila!
 
@@ -175,7 +180,6 @@ How about an ejs index page:
 
 ```bash
 touch views/index.ejs
-
 ```
 
 And add this code:
@@ -289,6 +293,7 @@ $ touch config/routes.js
 Inside this file we need to move all of our route handlers and at the end of the file, we need to export our router:
 
 ```javascript
+var express = require('express');
 var router  = express.Router();
 
 router.get('/', function(req, res) {
@@ -322,14 +327,14 @@ router.get('/posts', function(req, res) {
   res.send("INDEX");
 });
 
-router.get('/posts/:id', function(req, res) {
-  console.log("show");
-  res.send("SHOW");
+router.get('/posts', function(req, res) {
+  console.log("index");
+  res.send("INDEX");
 });
 
 router.get('/posts/new', function(req, res) {
   console.log("new");
-  res.send("NEW");
+  res.render('posts/new');
 });
 
 router.post('/posts', function(req, res) {
