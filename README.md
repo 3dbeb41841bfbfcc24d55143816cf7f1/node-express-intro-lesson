@@ -327,9 +327,9 @@ router.get('/posts', function(req, res) {
   res.send("INDEX");
 });
 
-router.get('/posts', function(req, res) {
-  console.log("index");
-  res.send("INDEX");
+router.get('/posts/:id', function(req, res) {
+  console.log("show");
+  res.send("SHOW");
 });
 
 router.get('/posts/new', function(req, res) {
