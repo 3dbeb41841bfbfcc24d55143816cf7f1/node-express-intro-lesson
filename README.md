@@ -327,14 +327,14 @@ router.get('/posts', function(req, res) {
   res.send("INDEX");
 });
 
-router.get('/posts/:id', function(req, res) {
-  console.log("show");
-  res.send("SHOW");
-});
-
 router.get('/posts/new', function(req, res) {
   console.log("new");
   res.render('posts/new');
+});
+
+router.get('/posts/:id', function(req, res) {
+  console.log("show");
+  res.send("SHOW");
 });
 
 router.post('/posts', function(req, res) {
