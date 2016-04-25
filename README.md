@@ -85,13 +85,13 @@ Notice the get verb here - this can also be post, put, delete, etc. Then run the
 ```bash
 node app.js
 ```
-It may get tiresome to constantly stop and restart the server, so we can also use this: 
+It may get tiresome to constantly stop and restart the server, so we can also use this:
 
 ```bash
 nodemon app.js
 ```
 
-Navigate to `http://localhost:3000` and voila!
+Navigate your browser to `http://localhost:3000` and voila!
 
 Now this is pretty awesome (isn't it?) but it doesn't really do anything. Plus, what if we want to start creating pages instead of just using sending text?
 
@@ -125,7 +125,7 @@ Just like Sinatra, routes in Express are created using methods named after HTTP 
 
 Express comes with a default templating engine called [jade](http://jade-lang.com), a high performance template engine heavily influenced by [HAML](http://haml.info).  Like HAML, jade simplifies writing html by eliminating the need for parts of html tags and utilizing white space.
 
-But this is a bit different than what we've been using with ERB; explore jade/haml on your own, but we'll be using another common templating engine called [EJS](http://www.embeddedjs.com/) (Embedded JavaScript) since it's similar to ERB.  
+But this is a bit different than what we've been using with ERB; explore jade/haml on your own, but we'll be using another common templating engine called [EJS](http://www.embeddedjs.com/) (Embedded JavaScript) since it's similar to ERB.
 
 Instead of sending some text when we hit our site let's have it serve an index page.
 
@@ -179,6 +179,7 @@ app.get('/', function(req, res) {
 How about an ejs index page:
 
 ```bash
+mkdir views
 touch views/index.ejs
 ```
 
@@ -198,7 +199,7 @@ And add this code:
     <p> This is a paragraph of text. Yay! </p>
   </div>
 </body>
-
+</html>
 ```
 
 #### Logging in Express with Middleware - Codealong (10 mins)
@@ -220,21 +221,24 @@ app.set('view engine', 'ejs');
 // Middleware
 app.use(function(req, res, next) {
   console.log('%s request to %s from %s', req.method, req.path, req.ip);
-
   next();
 });
 
+// Routing
 app.get('/', function(req, res) {
-.
-.
-.
+  .
+  .
+  .
+});
 ```
 
-Let's go through this: After setting up the `view engine` for our app, we use a new method of app called `use`. As an argument to `use` we pass in a function that performs some executables, log some data and fire a callback named `next`. This function, this block of code, is our middleware and `use` is a method given to us by Express whose purpose is to simply implement any middleware we pass to it.
+Let's go through this:
 
-In this example, we are simply logging out the request method ('GET'), the request path ('/') and the request IP ('127.0.0.1' - localhost). `next()` is just a callback function used for the purpose of allowing the app to continue on to other processes once this middleware is done executing. You can think of the `next()` function as telling the app to "move on."
-
-The order of these arguments is crucial: request is always first, response is always second and the callback is always third.
+* After setting up our app and before our routes we tell our app to use a new function we are providing.
+* When writing custom Middleware, it's best practice to pass in the **req** object, the **res** object and finally **next**, _even if we don't use it!_
+* In this case, we are simply logging out the request method ('GET'), the request path ('/') and the request IP ('127.0.0.1' - localhost).
+* `next()` is just a callback function used for the purpose of allowing the app to continue on to other processes once this middleware is done executing. You can think of the `next()` function as telling the app to "move on."
+* The order of these arguments is crucial: request is always first, response is always second and the callback is always third.
 
 ## Adding Routes to our app - Codealong (15 mins)
 
@@ -248,10 +252,10 @@ First we define our _router_. This is what handles our routing. It's normally be
 var express = require('express');
 var app     = express();
 var port    = process.env.PORT || 3000;
-var router  = express.Router();
+var router  = express.Router();             // Add this line
 ```
 
-This needs to be under the definition of `var app`!  Then we add our routes.
+Next we add our routes.
 
 ```javascript
 router.get('/', function(req, res) {
