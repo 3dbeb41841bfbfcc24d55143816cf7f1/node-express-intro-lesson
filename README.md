@@ -286,8 +286,8 @@ As we saw before we are rendering our template and then passing in a local varia
 Let's move this router into another file to separate it from our `app.js`
 
 ```bash
-$ mkdir config
-$ touch config/routes.js
+mkdir config
+touch config/routes.js
 ```
 
 Inside this file we need to move all of our route handlers and at the end of the file, we need to export our router:
