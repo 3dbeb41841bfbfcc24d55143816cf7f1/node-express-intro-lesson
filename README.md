@@ -97,19 +97,6 @@ Now this is pretty awesome (isn't it?) but it doesn't really do anything. Plus, 
 
 ## Routing in Express - Intro (5 mins)
 
-We know how routes look in Sinatra:
-
-```ruby
-get "/" do
-  erb "WDI is awesome."
-end
-
-get "/songs" do
-  @songs = ["Fly Me To The Moon", "New York, New York", "Luck Be A Lady"]
-  erb :'songs'
-end
-```
-
 Let's look at routes and handler callback functions in Express routes:
 
 ```javascript
@@ -118,10 +105,9 @@ app.get('/', function(req, res) {
 });
 ```
 
-Just like Sinatra, routes in Express are created using methods named after HTTP verbs. In the example above, we created a route to respond to GET requests at the root of the app. You will have a corresponding method on the app object for all the HTTP verbs.  In this example, we'll send back the `homepage` view as a response.
+Routes in Express are created using methods named after HTTP verbs. In the example above, we created a route to respond to GET requests at the root of the app. You will have a corresponding method on the app object for all the HTTP verbs.  In this example, we'll send back the `homepage` view as a response.
 
 ## Templates in Express - Codealong (10 mins)
-
 
 Express comes with a default templating engine called [jade](http://jade-lang.com), a high performance template engine heavily influenced by [HAML](http://haml.info).  Like HAML, jade simplifies writing html by eliminating the need for parts of html tags and utilizing white space.
 
@@ -204,7 +190,7 @@ And add this code:
 
 #### Logging in Express with Middleware - Codealong (10 mins)
 
-You may have seen this word floating around or seen it when you did Sinatra (Rack Middleware). Middleware is simply code that can be executed anywhere between a request and a response.
+Middleware is simply code that can be executed anywhere between a request and a response.
 
 In our Hello World app we are logging out the server port once it has started - that is it. We get no other information about requests or errors like we have in Rails. We can use _Middleware_ to achieve this.
 
@@ -323,7 +309,7 @@ var router = require("./config/routes");
 
 ## Restful Routing - Intro (10 mins)
 
-As we've already seen with Sinatra, we will use the RESTful standard to build our web apps. At the moment, we've just covered how to handle GET requests, but we can create callbacks for all types of requests. For example, if we want to create a restful controller for the resource posts, we can add this into our `config/routes.js` file:
+We will use the RESTful standard to build our web apps. At the moment, we've just covered how to handle GET requests, but we can create callbacks for all types of requests. For example, if we want to create a restful controller for the resource posts, we can add this into our `config/routes.js` file:
 
 ```javascript
 router.get('/posts', function(req, res) {
@@ -484,5 +470,6 @@ Also, test your application with `cURL` requests to each of the RESTful endpoint
 A framework can be overwhelming at the start, after a couple of days you will see how it makes your life easier.  We will work more on how to make RESTful controllers, this is just an introduction.
 
 - What is Middleware and why is it helpful in Express?
+- What is a route?
+- What is RESTful routing?
 - Explain how body-parser helps decode information in your application.
-- Identify some similarities and differences between Express and Sinatra.
